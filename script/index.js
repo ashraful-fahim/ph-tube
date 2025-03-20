@@ -48,6 +48,17 @@ const displayVideos = (videos) => {
 
     videoContainer.innerHTML = "";
 
+    if (videos.length == 0) {
+        videoContainer.innerHTML = `
+        <div class="py-20 col-span-full flex flex-col justify-center items-center text-center">
+            <img class="w-1/9" src="./assets/Icon.png" alt="">
+            <p class="pt-5 text-xl font-bold">Oops!! 
+                <br>Sorry, There is no content here</p>
+        </div>
+        `
+        return;
+    }
+
     videos.forEach((video) => {
         const videoCard = document.createElement("div");
         videoCard.innerHTML = `
