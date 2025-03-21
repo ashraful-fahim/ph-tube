@@ -1,3 +1,11 @@
+const removeActiveClass = () => {
+    const activeButton = document.getElementsByClassName("active");
+    
+    for (let btn of activeButton){
+        btn.classList.remove("active");
+    }
+}
+
 function loadCategory() {
     //1 - fetching the data
     fetch('https://openapi.programming-hero.com/api/phero-tube/categories')
@@ -10,7 +18,12 @@ function loadCategory() {
 function loadVideo() {
     fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
         .then((res) => res.json())
-        .then((data) => displayVideos(data.videos))
+        .then((data) => {
+            removeActiveClass();
+            document.getElementById("btn-all").classList.add("active");
+
+            displayVideos(data.videos);
+        })
 }
 
 function displayCategories(categories) {
@@ -22,7 +35,7 @@ function displayCategories(categories) {
         // console.log(cat.category)
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML = `
-        <button onclick="displayCategoryVideos(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.category}</button>
+        <button id="btn-${cat.category_id}" onclick="displayCategoryVideos(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.category}</button>
         `
 
         // append element
@@ -37,7 +50,13 @@ const displayCategoryVideos = (id) => {
 
     fetch(url)
         .then(res => res.json())
-        .then(data => displayVideos(data.category))
+        .then(data => {
+            removeActiveClass();
+            const clickedButton = document.getElementById(`btn-${id}`);
+            clickedButton.classList.add("active");
+
+            displayVideos(data.category)
+        })
 
 }
 
