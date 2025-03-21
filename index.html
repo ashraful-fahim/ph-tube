@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        .active{
+        .active {
             background-color: #FF1F3D;
             color: white;
         }
@@ -40,11 +40,27 @@
     <section id="video-container" class="w-11/12 mx-auto grid grid-cols-4 gap-5">
         <div class="py-20 col-span-full flex flex-col justify-center items-center text-center">
             <img class="w-1/9" src="./assets/Icon.png" alt="">
-            <p class="pt-5 text-xl font-bold">Oops!! 
-                <br>Sorry, there is no content here.</p>
+            <p class="pt-5 text-xl font-bold">Oops!!
+                <br>Sorry, there is no content here.
+            </p>
         </div>
-        
+
     </section>
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="video_details" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <div id="details-container">
+
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 
     <script src="./script/index.js"></script>
 </body>
